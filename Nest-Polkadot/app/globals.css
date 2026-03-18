@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-surface-primary text-text-primary font-sans;
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply bg-[rgba(255,255,255,0.03)] border border-border;
+    backdrop-filter: blur(10px);
+  }
+
+  .polkadot-button {
+    @apply bg-polkadot-primary hover:bg-polkadot-hover text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-polkadot-glow hover:shadow-polkadot-glow-hover;
+  }
+
+  .polkadot-button-outline {
+    @apply border border-polkadot-primary text-polkadot-primary hover:bg-polkadot-primary hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-200;
+  }
+
+  .polkadot-input {
+    @apply bg-surface-secondary border border-border text-text-primary px-4 py-3 rounded-lg focus:outline-none focus:border-polkadot-primary focus:shadow-polkadot-glow transition-all duration-200;
+  }
+
+  .polkadot-card {
+    @apply glassmorphism rounded-xl p-6;
+  }
+
+  .polkadot-progress {
+    @apply bg-surface-tertiary rounded-full overflow-hidden;
+  }
+
+  .polkadot-progress-bar {
+    @apply bg-polkadot-primary h-full transition-all duration-500 ease-out;
+  }
+
+  .mono-number {
+    @apply font-mono text-polkadot-primary;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 24px rgba(230, 0, 122, 0.5);
+  }
+}
