@@ -10,5 +10,6 @@ const config: HardhatUserConfig = {
             chainId: 420420421, // confirm exact Polkadot Hub testnet ID
         },
     },
+    defaultNetwork: "hardhat",
 };
 export default config;

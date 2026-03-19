@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC4626.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
@@ -30,6 +31,8 @@ contract NestTreasuryVault is ERC4626, AccessControl, ReentrancyGuard {
         bool    agentEnabled;
     }
 
+    IERC20 public immutable usdcToken;
+
     mapping(address => BusinessGoal[])  public goals;
     mapping(address => TreasuryPolicy)  public policies;
     mapping(address => uint256)         public totalSaved;
@@ -41,9 +44,10 @@ contract NestTreasuryVault is ERC4626, AccessControl, ReentrancyGuard {
     event PaymentSplit(address indexed business, uint256 total, uint256 saved, uint256 liquid);
     event AgentDeployed(address indexed business, uint256 amount, string reason);
 
-    constructor(IERC20 asset)
-        ERC4626(asset)
+    constructor(address asset)
+        ERC4626(IERC20(asset))
         ERC20("Nest Treasury Share", "nTRSY") {
+        usdcToken = IERC20(asset);
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
